@@ -1,0 +1,29 @@
+[project]
+name = "firefighter-mcp"
+version = "0.1.0"
+description = "MCP server exposing firefighter-platform product, stack and engineering context to agents"
+readme = "README.md"
+authors = [
+    { name = "José Renteria", email = "joser@jfschmidt.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "fastmcp>=4.1.0",
+]
+
+[project.scripts]
+firefighter-mcp = "firefighter_mcp.server:main"
+
+[build-system]
+requires = ["uv_build>=0.9.13,<0.10.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

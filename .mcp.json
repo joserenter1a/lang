@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "firefighter-context": {
+      "command": "uv",
+      "args": ["run", "--directory", "mcp", "firefighter-mcp"]
+    }
+  }
+}
