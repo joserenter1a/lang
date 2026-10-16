@@ -1,0 +1,11 @@
+{
+  "enabledPlugins": {
+    "langsmith-tracing@langsmith-claude-code-plugins": true
+  },
+  "env": {
+    "TRACE_TO_LANGSMITH": "true",
+    "CC_LANGSMITH_API_KEY": "",
+    "CC_LANGSMITH_PROJECT": "deep-agent",
+    "LANGSMITH_ENDPOINT": "https://api.smith.langchain.com"
+  }
+}
