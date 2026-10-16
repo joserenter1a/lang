@@ -45,7 +45,7 @@ instead of guessing. When asked to plan a change, include the branch name, the c
 pre_push_plan, and any Tier 1 areas that need a human reviewer."""
 
 
-def build_model() -> ChatAnthropic:
+def build_model(effort: str = EFFORT) -> ChatAnthropic:
     api_key = os.getenv("CLAUDE_API_KEY") or os.getenv("ANTHROPIC_API_KEY")
     if not api_key:
         sys.exit("Set CLAUDE_API_KEY in deep-agent/.env")
@@ -55,7 +55,7 @@ def build_model() -> ChatAnthropic:
         model=MODEL,
         api_key=api_key,
         max_tokens=16000,
-        output_config={"effort": EFFORT},
+        output_config={"effort": effort},
         default_headers={"anthropic-workspace-id": workspace} if workspace else None,
     )
 
@@ -83,12 +83,18 @@ async def firefighter_agent():
         )
 
 
-async def ask(agent, question: str, thread_id: str) -> str:
+async def ask_with_trace(agent, question: str, thread_id: str) -> dict:
+    """The answer plus the tools the agent called, in order (used by evals/)."""
     result = await agent.ainvoke(
         {"messages": [{"role": "user", "content": question}]},
         config={"configurable": {"thread_id": thread_id}},
     )
-    return result["messages"][-1].text
+    tools = [call["name"] for m in result["messages"] for call in getattr(m, "tool_calls", None) or []]
+    return {"answer": result["messages"][-1].text, "tools": tools}
+
+
+async def ask(agent, question: str, thread_id: str) -> str:
+    return (await ask_with_trace(agent, question, thread_id))["answer"]
 
 
 async def main():

@@ -1,0 +1,177 @@
+[
+  {
+    "id": "calendar-freeze",
+    "question": "When is the code freeze before the summit, and when is the summit itself?",
+    "reference": "The freeze is Wednesday Oct 14, 2026 at 9pm Pacific. The summit runs Thursday Oct 15 to Saturday Oct 17, where every ticket is marked Pass, Fix or Rethink.",
+    "must_include": [["oct 14", "october 14"], ["9pm", "9 pm", "9:00 pm", "21:00"], ["oct 15", "october 15"]],
+    "source": "founder-packages-plan.md § 5 The calendar; § 1 D5"
+  },
+  {
+    "id": "calendar-pilot-selling",
+    "question": "What are the pilot dates, when does wave 2 join, and when does Brass Acre start selling?",
+    "reference": "The pilot runs Mon Nov 16 to Thu Dec 31, 2026: wave 1 goes live Nov 16 at agency one beside its current system, wave 2 joins Dec 1, and the pilot report is Dec 31. Selling starts Mon Mar 1, 2027.",
+    "must_include": [["nov 16", "november 16"], ["dec 1", "december 1"], ["dec 31", "december 31"], ["mar 1", "march 1"], ["2027"]],
+    "source": "founder-packages-plan.md § 5"
+  },
+  {
+    "id": "pilot-wave-1-products",
+    "question": "Which five products lead the pilot in wave 1?",
+    "reference": "Run, Shift, Alert, Station and Prevent (decision D18; Phase 3 brings them and the Spine to full depth on real data between Oct 19 and Nov 13).",
+    "must_include": [["run"], ["shift"], ["alert"], ["station"], ["prevent"]],
+    "source": "founder-packages-plan.md § 1 D18; § 5 Phase 3"
+  },
+  {
+    "id": "precedence",
+    "question": "When the founder's packages and the repo disagree, which one wins? And between the v4.6 and v4.3 packages?",
+    "reference": "The repo wins on how things are built (decision D19, repo first); the packages win on what and why (workflows, screens, data ownership, done-when lines and dates stand as written). Between packages, v4.6 (the Oct 4 overlay) wins wherever it speaks; where it is silent v4.3 stands. A departure from a brief is stated in the PR ('package said X, repo does Y, followed the repo') and logged in docs/repo-alignment-log.csv.",
+    "must_include": [["how"], ["what and why", "what & why", "the what"], ["v4.6"], ["v4.3"]],
+    "source": "founder-packages-plan.md § 0 Tiebreakers; CLAUDE.md"
+  },
+  {
+    "id": "patient-data-rule",
+    "question": "What is the founder's rule on patient data in Run?",
+    "reference": "Run is a full fire and EMS product and will store real patients' confidential data, secured, but only in the covered production stack (a separate AWS account with its own keys, every chart read logged, agreements signed with every host that touches patient data). Never pull, copy or scrape real patient data from another agency's or vendor's system. Demo, test and prompt data use invented patients. The rule is final: 'Do not reopen'.",
+    "must_include": [["covered"], ["scrape", "copy", "pull"], ["invented"]],
+    "source": "founder-packages-plan.md § 1 D1/D15; § 1a Patient data rule"
+  },
+  {
+    "id": "muster-fund-prices",
+    "question": "What price has the founder set for Muster and Fund?",
+    "reference": "None yet. Muster and Fund are registered as preview modules with no published price (priceBook.unpriced), so their cards carry no price line. Setting the prices is an open decision for Mike, due before the January price sheet. The agent must not invent a price.",
+    "must_include": [["unpriced", "no price", "no published price", "not priced", "not been set", "not set", "no prices"], ["mike", "founder"]],
+    "source": "founder-packages-plan.md § 1 D7; § 7 item 2; § 8 row 1"
+  },
+  {
+    "id": "atlas-sold-separately",
+    "question": "Is Atlas sold as a separate product in 2026?",
+    "reference": "Unresolved. The package says Atlas is not sold separately in 2026 (a basic suite map viewer), but the public site still sells it. Whether it is sold or bundled is an open decision for Mike (§ 7 item 3, § 8 row 1).",
+    "must_include": [["2026"], ["site"], ["mike", "founder"]],
+    "source": "founder-packages-plan.md § 6 Atlas row; § 7 item 3; § 8 row 1"
+  },
+  {
+    "id": "toast-rule",
+    "question": "What does 'a toast is never done' mean for a screen I'm changing?",
+    "reference": "Decision D22 (extends rule 15): every message-only or no-response control must become real state, an honest empty state, be hidden, or show its ticket id inline. In code, a changed screen adds no new toast( call or sonner import (the Reviewer agent fails it). Existing sonner imports are cleaned as their screens are touched, not in one sweep.",
+    "must_include": [["real state"], ["empty state"], ["hidden", "hide"], ["ticket id"], ["sonner"]],
+    "source": "founder-packages-plan.md § 1a D22; CLAUDE.md Conventions"
+  },
+  {
+    "id": "shell-flag",
+    "question": "Is the new app frame shipped behind the NEXT_PUBLIC_SHELL_V2 flag?",
+    "reference": "No. The package proposed NEXT_PUBLIC_SHELL_V2 as a per-branch variable, but on Oct 6, 2026 it was decided to use no flag: the repo had no production users, so the new frame replaced the old one outright, and the legacy shell and the three per-product door contexts and toggles were deleted in the same change (docs/shell.md § 1). Some product docs still mention the flag; they are stale. The per-environment rule still governs anything staging-only.",
+    "must_include": [["oct 6", "october 6"], ["no flag", "not behind", "without a flag", "without the flag", "no longer", "deleted", "removed", "replaced"]],
+    "source": "founder-packages-plan.md § 8a P1; CLAUDE.md Conventions (app frame)"
+  },
+  {
+    "id": "ticket-numbering",
+    "question": "I'm starting a V46 ticket that has no master number yet. How do I name things, and where do master numbers come from?",
+    "reference": "A provisional V45-/V46- id is fine in the branch (ba-<id>-<slug>), the PR title ([<id>] <short title>) and the commit subject (<area>: <imperative> [<id>]) until the huddle assigns the master. New master numbers start at 1876 and are handed out at the huddle, never in a chat. Never renumber a ticket.",
+    "must_include": [["1876"], ["huddle"], ["renumber"], ["ba-"]],
+    "source": "founder-packages-plan.md § 10 Tickets; § 8a T6; CLAUDE.md Branches"
+  },
+  {
+    "id": "branch-commit-vs-package",
+    "question": "The founder's package says to branch as item/<number>-name and commit as '[number] what changed'. Should I follow that?",
+    "reference": "No. The repo uses branch ba-<id>-<slug> (which the package's own newer files agree with) and commit subject '<area>: <imperative subject> [<id>]'. The <area>: prefix keeps foundation and product commits apart, which the white-label merge with the foundation repo needs. The repo wins on how.",
+    "must_include": [["ba-"], ["area"], ["foundation"]],
+    "source": "founder-packages-plan.md § 9 Suggestions we are not taking literally"
+  },
+  {
+    "id": "postgres-rls",
+    "question": "The package asks for Postgres with agency_id and row-level security. How does the repo meet that requirement instead?",
+    "reference": "Same guarantee on the stack the repo runs: DynamoDB with orgId on every model (and a ...ByOrg index), AppSync auth rules, the record-access pipeline, and a CI test that agency B reads zero rows of agency A. The v4.3 Postgres schema and RLS were retired by v4.6 itself.",
+    "must_include": [["dynamo"], ["orgid"], ["appsync"], ["record-access", "record access"]],
+    "source": "founder-packages-plan.md § 9; § 0 (v4.3 technical proposals retired)"
+  },
+  {
+    "id": "export-renderer",
+    "question": "Which library does the export renderer use, and is that still an open decision?",
+    "reference": "react-pdf (@react-pdf/renderer), built in amplify/custom/export-renderer/ (PR 97). The package left the library as 'Patrick's call', but it is already decided by code; the real open item was running it on a sandbox, plus the CDN decision versus a presigned GET.",
+    "must_include": [["react-pdf"], ["sandbox", "decided", "already"]],
+    "source": "founder-packages-plan.md § 8a P11; § 3a Export"
+  },
+  {
+    "id": "event-logger-audit",
+    "question": "Does the platform's audit log actually record changes today? What does the plan say about it?",
+    "reference": "No. amplify/functions/event-logger is still a stub (it logs INSERT/MODIFY/REMOVE to the console and has TODOs; it writes no EventLog rows). The package says 'every logged sentence in the docs is untrue in code'. The fix is V46-302 / V45-041 (Patrick, P0): one idempotent EventLog row per stream record, names only for chart, Run and Origin tables, exclusions for private notes and availability, with id = evt_<eventID> as the replay key.",
+    "must_include": [["stub", "not implemented", "todo", "doesn't write", "does not write", "no eventlog"], ["v46-302", "v45-041"]],
+    "source": "founder-packages-plan.md § 3a Audit; § 8a P12; amplify/functions/event-logger/handler.ts"
+  },
+  {
+    "id": "tier1-review",
+    "question": "Which kinds of change need a person to review them, not only an agent?",
+    "reference": "Tier 1: sign-in, sessions, permissions, schema (and migrations), patient data and the covered stack, police data, pay and discipline, evidence and custody, anything that sends outside the agency, production releases and deletes, and changes to a test (the plan also lists AGENTS.md and the coding standard).",
+    "must_include": [["sign-in", "sign in"], ["permission"], ["schema"], ["patient"], ["police"], ["evidence"], ["test"]],
+    "source": "founder-packages-plan.md § 10 Tier 1 review; CLAUDE.md Conventions"
+  },
+  {
+    "id": "groups-and-red",
+    "question": "What are the product groups, and which group may use red?",
+    "reference": "Four groups in brand order: Prepare, Respond, People, Lead (decision D2). Red is only on Respond. Group colours are tokens (--group-<id> in config/theme.css) that mark headers and chips only, never a product accent.",
+    "must_include": [["prepare"], ["respond"], ["people"], ["lead"], ["red"]],
+    "source": "founder-packages-plan.md § 1 D2; CLAUDE.md"
+  },
+  {
+    "id": "assist-naming",
+    "question": "What do we call the AI feature on screens and in public copy?",
+    "reference": "Assist (decision D9). It is in every product. Saying 'AI' is fine in explanation, but the feature is never named 'AI assistant'; the copy check bans that name.",
+    "must_include": [["assist"], ["ai assistant"]],
+    "source": "founder-packages-plan.md § 1 D9; § 2 Copy rules"
+  },
+  {
+    "id": "banned-words",
+    "question": "Which words must never appear as claims on public surfaces?",
+    "reference": "Compliant, certified, approved, guaranteed, partner, legal and cheapest (the hard gates list); also no 'coming soon', and never 'HIPAA compliant'. npm run check:copy enforces the public-copy rules.",
+    "must_include": [["compliant"], ["cheapest"], ["certified"], ["coming soon"]],
+    "source": "founder-packages-plan.md § 4.4 Hard gates; § 1 Rule 15; § 3a Public site"
+  },
+  {
+    "id": "summit-script-order",
+    "question": "In what order are prototypes remediated for the summit script?",
+    "reference": "Run, Shift, Prevent, Station, Response, Chief's Desk, Rooms, Launchpad, then the rest (D26, T4). Before that come the shell (V46-001 to V46-003) and the demo lane refresh (V46-451).",
+    "must_include": [["run"], ["shift"], ["prevent"], ["station"], ["response"], ["chief"]],
+    "source": "founder-packages-plan.md § 1a D26; § 8a T4"
+  },
+  {
+    "id": "admin-door-size",
+    "question": "How many items may a product's Admin door show, and what happens to Run's?",
+    "reference": "Seven items; the rest go under a second-level route (D27, Platform Standard). Run folds its 21 Admin items to 7 (V45-702).",
+    "must_include": [["seven", "7"], ["21"], ["second", "second-level", "second level"]],
+    "source": "founder-packages-plan.md § 1a D27"
+  },
+  {
+    "id": "origin-owner-next",
+    "question": "Who owns Origin and what is its next piece of work?",
+    "reference": "Patrick (the lead developer) owns Origin (module id investigations). Next: the export renderer, and the Opinions draft as a switch that ships Off.",
+    "must_include": [["patrick"], ["export"]],
+    "source": "founder-packages-plan.md § 6 Product work, Origin row"
+  },
+  {
+    "id": "fixed-numbers",
+    "question": "The founder's docs give fixed numbers like a 60 second escalation and a 72 hour room close. Do we hardcode them?",
+    "reference": "No. They become agency settings with those values as defaults, because the founder's own docs say agencies can change thresholds. The exception is the privacy floor of 5, which is a floor, not a setting.",
+    "must_include": [["setting"], ["default"], ["floor"]],
+    "source": "founder-packages-plan.md § 9"
+  },
+  {
+    "id": "compliance-deadlines",
+    "question": "What are the NERIS and NEMSIS deadlines before real data and selling?",
+    "reference": "NERIS test submissions before Nov 13 and the compatibility test before Mar 1; the NEMSIS application by Dec 15 (and the NEMSIS export by Nov 13, ticket 1815). Also: an outside security test booked for January, police data never stored, CJIS before any police data.",
+    "must_include": [["nov 13", "november 13"], ["dec 15", "december 15"]],
+    "source": "founder-packages-plan.md § 4.4 Hard gates; § 1 D1"
+  },
+  {
+    "id": "session-rule-open",
+    "question": "How long is a session per door (Field, Station, Admin)?",
+    "reference": "Not decided: it is open founder decision 3 (ticket 1775). Options on the table: 30 minutes idle (SW-051) versus the code kit's 12 hours; the reference proposes Field 12 h on a trusted device, Station 30 min, Admin 15 min with step-up. The agent must present these as proposals, not as the rule.",
+    "must_include": [["open", "undecided", "not decided", "not yet decided", "pending", "proposal", "proposed", "proposes"], ["12"], ["30"], ["15"]],
+    "source": "founder-packages-plan.md § 8 row 3"
+  },
+  {
+    "id": "send-to-data-classes",
+    "question": "In the Send to routing service, what data can never leave through Send to?",
+    "reference": "Every field is tagged OPS, PERSONNEL, SENSITIVE, EVIDENCE, PHI or CJIS and the destination's clearance is checked on the server. PHI and CJIS can never leave through Send to; EVIDENCE goes only to Origin or Release.",
+    "must_include": [["phi"], ["cjis"], ["evidence"]],
+    "source": "founder-packages-plan.md § 4.3 Send to (1839 to 1841)"
+  }
+]
